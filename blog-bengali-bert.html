@@ -305,6 +305,7 @@ tbody td{padding:12px 17px;color:var(--ink2);vertical-align:middle}
     <div class="hero-meta">
       <span><span class="dot"></span>Tanzil Islam</span>
       <span><span class="dot"></span>March 2026</span>
+      <span><span class="dot"></span>14 min read</span>
       <span><span class="dot"></span>BanglaBERT &middot; mBERT &middot; XLM-RoBERTa</span>
     </div>
   </div>
@@ -606,11 +607,16 @@ tbody td{padding:12px 17px;color:var(--ink2);vertical-align:middle}
 
   <div class="section-divider"><div class="section-divider-icon"></div></div>
 
+  <p style="margin-top:40px;color:var(--ink3);font-style:italic;">
+    Full training code, preprocessing scripts, and a demo notebook are available on my GitHub. If you're working on Bengali NLP or multimodal fusion — reach out on LinkedIn.
+  </p>
+
   <!-- SHARE BAR -->
   <div class="share-bar">
-    <span class="share-label">Connect With Me:</span>
+    <span class="share-label">Share:</span>
     <a class="share-btn" href="https://www.linkedin.com/in/tanzil-islam-79269223a/" target="_blank">LinkedIn</a>
     <a class="share-btn" href="https://github.com/Tanzil-islam" target="_blank">GitHub</a>
+    <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy link',2000)">Copy link</button>
   </div>
 
 </div>
@@ -647,17 +653,23 @@ window.addEventListener('scroll', function(){
   document.getElementById('progress-bar').style.width = pct + '%';
 }, {passive:true});
 
-// TOC — show only after hero, hide when inside hero
+// TOC — show only between hero bottom and footer top
 var tocSidebar = document.getElementById('toc');
 var tocItems = document.querySelectorAll('.toc-item');
 var headings = document.querySelectorAll('h2[id]');
 var heroEl = document.querySelector('.hero');
+var footerEl = document.querySelector('.article-footer');
 
 window.addEventListener('scroll', function(){
-  // Show TOC only once user has scrolled past the hero
   var heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight : 500;
-  var pastHero = window.scrollY > heroBottom - 80;
-  tocSidebar.classList.toggle('toc-visible', pastHero);
+  var footerTop = footerEl ? footerEl.offsetTop : document.body.scrollHeight;
+  // viewport bottom position
+  var viewportBottom = window.scrollY + window.innerHeight;
+
+  var pastHero   = window.scrollY > heroBottom - 80;
+  var beforeFooter = viewportBottom < footerTop + 60;
+
+  tocSidebar.classList.toggle('toc-visible', pastHero && beforeFooter);
 
   // Active section highlight
   var scrollY = window.scrollY + 140;
