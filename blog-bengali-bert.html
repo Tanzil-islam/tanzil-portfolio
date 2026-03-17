@@ -60,8 +60,14 @@ nav.port-nav{
 
 /* Table of contents sidebar */
 .toc-sidebar{
-  position:fixed;left:2rem;top:50%;transform:translateY(-50%);
+  position:fixed;left:2rem;top:50%;
+  transform:translateY(-50%);
   display:flex;flex-direction:column;gap:.5rem;z-index:50;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease, transform .35s ease;
+}
+.toc-sidebar.toc-visible{
+  opacity:1;pointer-events:auto;
 }
 .toc-item{
   display:flex;align-items:center;gap:.6rem;
@@ -647,11 +653,20 @@ window.addEventListener('scroll', function(){
   document.getElementById('progress-bar').style.width = pct + '%';
 }, {passive:true});
 
-// TOC active state
+// TOC — show only after hero, hide when inside hero
+var tocSidebar = document.getElementById('toc');
 var tocItems = document.querySelectorAll('.toc-item');
 var headings = document.querySelectorAll('h2[id]');
+var heroEl = document.querySelector('.hero');
+
 window.addEventListener('scroll', function(){
-  var scrollY = window.scrollY + 120;
+  // Show TOC only once user has scrolled past the hero
+  var heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight : 500;
+  var pastHero = window.scrollY > heroBottom - 80;
+  tocSidebar.classList.toggle('toc-visible', pastHero);
+
+  // Active section highlight
+  var scrollY = window.scrollY + 140;
   var active = 0;
   headings.forEach(function(h, i){ if(h.offsetTop <= scrollY) active = i; });
   tocItems.forEach(function(t,i){ t.classList.toggle('active', i === active); });
