@@ -286,6 +286,7 @@ footer{position:relative;overflow:hidden}
 .cv-cv  .card-visual-glow{top:-30px;right:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(82,183,136,.15) 0%,transparent 70%)}
 .cv-ml  .card-visual-glow{top:-30px;right:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(61,124,201,.18) 0%,transparent 70%)}
 .cv-dl  .card-visual-glow{top:-30px;right:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(212,131,46,.16) 0%,transparent 70%)}
+.cv-ai  .card-visual-glow{top:-30px;right:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(82,183,136,.15) 0%,transparent 70%)}
 
 /* shimmer on hover */
 .blog-card::after{
@@ -339,9 +340,8 @@ footer{position:relative;overflow:hidden}
   <h1>Writing & <em>Research</em></h1>
   <p class="page-hero-sub">Technical deep-dives, research breakdowns, and real engineering war stories — from Bengali NLP to multimodal AI systems. Written from experience, not theory.</p>
   <div class="hero-stats-row">
-    <div class="h-stat"><span class="h-stat-num" id="post-count">2</span><span class="h-stat-label">Articles</span></div>
+    <div class="h-stat"><span class="h-stat-num" id="post-count">3</span><span class="h-stat-label">Articles</span></div>
     <div class="h-stat"><span class="h-stat-num">4</span><span class="h-stat-label">Topics</span></div>
-    <div class="h-stat"><span class="h-stat-num">12m</span><span class="h-stat-label">Avg read</span></div>
   </div>
 </div>
 
@@ -353,6 +353,7 @@ footer{position:relative;overflow:hidden}
   <button class="filter-btn" data-filter="cv">Computer Vision</button>
   <button class="filter-btn" data-filter="ml">Machine Learning</button>
   <button class="filter-btn" data-filter="dl">Deep Learning</button>
+  <button class="filter-btn" data-filter="ai">AI Systems</button>
 </div>
 
 <!-- BLOG GRID -->
@@ -470,34 +471,67 @@ footer{position:relative;overflow:hidden}
       </div>
     </a>
 
-    <!-- PLACEHOLDER CARD 3 -->
-    <div class="blog-card cv-ml reveal" data-category="ml" style="cursor:default;opacity:.55">
+    <!-- CARD 3 — Agentic AI vs AI Agents -->
+    <a class="blog-card cv-ai reveal" href="agentic-ai-vs-ai-agents.html" data-category="ai">
       <div class="card-visual">
         <div class="card-visual-grid"></div>
         <div class="card-visual-glow"></div>
-        <svg viewBox="0 0 280 180" width="100%" height="100%" style="position:absolute;inset:0;opacity:.5">
-          <polyline points="20,140 60,110 100,90 140,65 180,55 220,40 260,30" fill="none" stroke="#3d7cc9" stroke-width="1.2"/>
-          <polyline points="20,140 60,130 100,125 140,120 180,118 220,115 260,112" fill="none" stroke="rgba(61,124,201,.4)" stroke-width="0.8" stroke-dasharray="4,3"/>
-          <circle cx="220" cy="40" r="4" fill="#3d7cc9"/>
-          <circle cx="220" cy="115" r="4" fill="rgba(61,124,201,.4)"/>
-          <text x="140" y="165" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="rgba(61,124,201,.4)">XGBoost · Focal Loss · SHAP</text>
+        <svg viewBox="0 0 280 180" width="100%" height="100%" style="position:absolute;inset:0;opacity:.6">
+          <defs>
+            <marker id="aa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+            <marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(82,183,136,.5)" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+          <!-- Central orchestrator node -->
+          <circle cx="140" cy="88" r="24" fill="rgba(82,183,136,.12)" stroke="#52b788" stroke-width="1.2"/>
+          <text x="140" y="85" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#52b788">Agentic</text>
+          <text x="140" y="96" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#52b788">AI</text>
+          <!-- Satellite agent nodes -->
+          <circle cx="52" cy="44" r="16" fill="rgba(61,124,201,.1)" stroke="#3d7cc9" stroke-width="0.9"/>
+          <text x="52" y="48" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#82b3e8">Agent</text>
+          <circle cx="228" cy="44" r="16" fill="rgba(61,124,201,.1)" stroke="#3d7cc9" stroke-width="0.9"/>
+          <text x="228" y="48" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#82b3e8">Agent</text>
+          <circle cx="38" cy="138" r="16" fill="rgba(61,124,201,.1)" stroke="#3d7cc9" stroke-width="0.9"/>
+          <text x="38" y="142" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#82b3e8">Agent</text>
+          <circle cx="242" cy="138" r="16" fill="rgba(61,124,201,.1)" stroke="#3d7cc9" stroke-width="0.9"/>
+          <text x="242" y="142" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#82b3e8">Agent</text>
+          <!-- Connector lines -->
+          <line x1="65" y1="53" x2="118" y2="72" stroke="rgba(82,183,136,.4)" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#ab)"/>
+          <line x1="215" y1="53" x2="162" y2="72" stroke="rgba(82,183,136,.4)" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#ab)"/>
+          <line x1="52" y1="126" x2="118" y2="104" stroke="rgba(82,183,136,.4)" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#ab)"/>
+          <line x1="228" y1="126" x2="162" y2="104" stroke="rgba(82,183,136,.4)" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#ab)"/>
+          <!-- Bottom label -->
+          <text x="140" y="170" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="rgba(82,183,136,.35)">orchestration · planning · autonomy</text>
         </svg>
-        <div class="card-visual-tag"><span class="tag-dot" style="background:#3d7cc9"></span>Machine Learning</div>
-        <div class="card-read-time">Coming soon</div>
+        <div class="card-visual-label">AI</div>
+        <div class="card-visual-tag"><span class="tag-dot" style="background:#52b788"></span>AI Systems · Architecture</div>
+        <div class="card-read-time">9 min read</div>
       </div>
       <div class="card-body">
-        <div class="card-meta-row"><span style="color:#424769">Upcoming</span></div>
-        <h2 class="card-title" style="color:var(--ink3)">Beating Class Imbalance: Focal Loss, SMOTE, and Threshold Tuning on Medical Data</h2>
-        <p class="card-excerpt" style="color:#424769">My heart disease prediction model had 93% accuracy and 19% minority recall. Here is the full story of how I diagnosed the problem and brought recall up to 81% without sacrificing precision.</p>
+        <div class="card-meta-row">
+          <span>March 2026</span>
+          <span class="card-meta-dot"></span>
+          <span>Tanzil Islam</span>
+          <span class="card-meta-dot"></span>
+          <span>Agentic AI · LLM Systems</span>
+        </div>
+        <h2 class="card-title">Agentic AI vs AI Agents — Not the Same Thing</h2>
+        <p class="card-excerpt">The two terms get used interchangeably, but they describe fundamentally different architectures. A breakdown of what separates a single-task AI agent from a goal-directed agentic system — and why that distinction shapes every real-world deployment decision.</p>
         <div class="card-tags">
-          <span class="card-tag">Class Imbalance</span><span class="card-tag">Focal Loss</span><span class="card-tag">Medical AI</span>
+          <span class="card-tag">Agentic AI</span>
+          <span class="card-tag">AI Agents</span>
+          <span class="card-tag">Orchestration</span>
+          <span class="card-tag">LLM Systems</span>
         </div>
         <div class="card-footer">
-          <span class="card-read-btn" style="color:var(--ink3)">Coming soon</span>
-          <span class="card-date" style="color:#424769">May 2026</span>
+          <span class="card-read-btn">Read article <span class="card-arrow">→</span></span>
+          <span class="card-date">Mar 2026</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <!-- PLACEHOLDER CARD 4 -->
     <div class="blog-card cv-dl reveal" data-category="dl" style="cursor:default;opacity:.55">
